@@ -25,6 +25,13 @@
 		}, {
 			"command": "extension.baseConverter.anyToAny",
 			"title": "Convert Base Any to Any: Convert selection from any base to any base"
+		}],
+		"keybindings": [{
+			"command": "extension.baseConverter.binaryToDecimal",
+			"key": "ctrl+alt+d"
+		}, {
+			"command": "extension.baseConverter.decimalToBinary",
+			"key": "ctrl+alt+b"
 		}]
 	},
 	"scripts": {
