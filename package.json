@@ -1,0 +1,38 @@
+{
+	"name": "base-converter",
+	"description": "Convert selections between bases",
+	"version": "0.0.1",
+	"publisher": "hoovercj",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.baseConverter.decimalToBinary",
+		"onCommand:extension.baseConverter.binaryToDecimal",
+		"onCommand:extension.baseConverter.anyToAny"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [{
+			"command": "extension.baseConverter.decimalToBinary",
+			"title": "Convert Base Dec to Bin: Convert selection from decimal to binary"
+		}, {
+			"command": "extension.baseConverter.binaryToDecimal",
+			"title": "Convert Base Bin to Dec: Convert selection from binary to decimal"
+		}, {
+			"command": "extension.baseConverter.anyToAny",
+			"title": "Convert Base Any to Any: Convert selection from any base to any base"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"typescript": "^1.6.2",
+		"vscode": "0.10.x"
+	}
+}
