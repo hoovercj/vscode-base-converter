@@ -24,11 +24,18 @@ export function anyToAnyCommand() {
 }
 
 function applyBaseConversion(inputBase: number, outputBase: number) {
+	replaceSelections(convertBase, {inputBase: inputBase, outputBase:outputBase});
+}
 
+function convertBase(input:string, opts:{inputBase:number, outputBase:number}) :string {
+	return parseInt(input, opts.inputBase).toString(opts.outputBase)
+}
+
+function replaceSelections(func:(s:string, o:any) => string, opts?:any) {
 	let editor = vscode.window.activeTextEditor;
-	
+
+	let selectionsMap: { [line:number] : Selection[] } = {};	
 	let selections = editor.selections.filter( selection => selection.isSingleLine && !selection.isEmpty );
-	let selectionsMap: { [line:number] : Selection[] } = {};
 	selections.forEach(selection => selectionsMap[selection.start.line] ?
 		selectionsMap[selection.start.line].push(selection) :
 		selectionsMap[selection.start.line] = [selection]);
@@ -43,7 +50,9 @@ function applyBaseConversion(inputBase: number, outputBase: number) {
 				selectionsMap[key].forEach(selection => {
 					let selectedRange = new Range(selection.start.line, selection.start.character, selection.end.line, selection.end.character);
 					let selectedText = editor.document.getText(selectedRange);
-					let newText = convertBase(selectedText, inputBase, outputBase);
+					
+					let newText = func(selectedText, opts);
+					
 					let delta = newText.length - selectedText.length;
 					newSelections.push(new Selection(selection.start.line, selection.start.character + lineOffset, selection.end.line, selection.end.character + lineOffset + delta));
 					lineOffset += delta;
@@ -53,8 +62,4 @@ function applyBaseConversion(inputBase: number, outputBase: number) {
 		}
 	});	
 	editor.selections = newSelections;
-}
-
-function convertBase(input:string, inputBase:number, outputBase:number) :string {
-	return parseInt(input, inputBase).toString(outputBase)
 }
