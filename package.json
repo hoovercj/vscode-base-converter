@@ -9,6 +9,12 @@
 	"categories": [
 		"Other"
 	],
+	"license": "SEE LICENSE IN LICENSE",
+	"homepage": "https://github.com/hoovercj/vscode-base-converter",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/hoovercj/vscode-base-converter.git"
+	},	
 	"activationEvents": [
 		"onCommand:extension.baseConverter.decimalToBinary",
 		"onCommand:extension.baseConverter.binaryToDecimal",
@@ -27,11 +33,8 @@
 			"title": "Convert Base Any to Any: Convert selection from any base to any base"
 		}],
 		"keybindings": [{
-			"command": "extension.baseConverter.binaryToDecimal",
-			"key": "ctrl+alt+d"
-		}, {
-			"command": "extension.baseConverter.decimalToBinary",
-			"key": "ctrl+alt+b"
+			"key": "ctrl+alt+c",
+			"command": "extension.baseConverter.anyToAny"
 		}]
 	},
 	"scripts": {

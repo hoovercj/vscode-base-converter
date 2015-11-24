@@ -30,7 +30,7 @@ function applyBaseConversion(inputBase: number, outputBase: number) {
 }
 
 function convertBase(input:string, opts:{inputBase:number, outputBase:number}) :string {
-	return parseInt(input, opts.inputBase).toString(opts.outputBase)
+	return parseInt(input, opts.inputBase).toString(opts.outputBase).toUpperCase();
 }
 
 function replaceSelections(func:(s:string, o:any) => string, opts?:any) {
