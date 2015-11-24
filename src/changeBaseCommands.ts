@@ -1,6 +1,4 @@
-import {TextEditor, TextEditorEdit, InputBoxOptions, window, Range, Selection } from 'vscode';
-
-import * as vscode from 'vscode';
+import {InputBoxOptions, window, Range, Selection } from 'vscode';
 
 export function decimalToBinaryCommand() {
 	applyBaseConversion(10, 2);
@@ -32,7 +30,7 @@ function convertBase(input:string, opts:{inputBase:number, outputBase:number}) :
 }
 
 function replaceSelections(func:(s:string, o:any) => string, opts?:any) {
-	let editor = vscode.window.activeTextEditor;
+	let editor = window.activeTextEditor;
 
 	let selectionsMap: { [line:number] : Selection[] } = {};	
 	let selections = editor.selections.filter( selection => selection.isSingleLine && !selection.isEmpty );
