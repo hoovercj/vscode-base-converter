@@ -14,9 +14,13 @@ export function anyToAnyCommand() {
 		placeHolder: "10, 2"
 	}
 	window.showInputBox(options).then(value => {
+		if (!value) return;
+		
 		let matches:RegExpMatchArray = /(\d+)\D+(\d+)/.exec(value)
-		if (matches[1] && matches[2]){
+		if (matches && matches[1] && matches[2]){
 			applyBaseConversion(parseInt(matches[1]), parseInt(matches[2]));
+		} else {
+			window.showErrorMessage("Cannot convert between the bases you specified. Please try again.");
 		}
 	});
 }
